@@ -12,8 +12,7 @@ export default function Location() {
       name: "Canal 1 - Santos",
       description:
         "Localizado em uma das principais vias de Santos, com alto fluxo de veículos e pedestres.",
-      image:
-        "https://images.pexels.com/photos/3473569/pexels-photo-3473569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "../../assets/image/canal-1.jpeg",
       stats: {
         fluxoDiario: "50.000+",
         visibilidade: "Alta",
@@ -24,8 +23,7 @@ export default function Location() {
       name: "Av. Ana Costa - Santos",
       description:
         "Avenida comercial de grande movimento, conectando a praia ao centro da cidade.",
-      image:
-        "https://images.pexels.com/photos/1036657/pexels-photo-1036657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "../../assets/image/teleferico.jpeg",
       stats: {
         fluxoDiario: "45.000+",
         visibilidade: "Alta",
@@ -36,8 +34,7 @@ export default function Location() {
       name: "Av. Presidente Wilson - São Vicente",
       description:
         "Via litorânea com alta circulação de turistas e moradores durante todo o ano.",
-      image:
-        "https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "../../assets/image/campo-de-pouso.jpeg",
       stats: {
         fluxoDiario: "40.000+",
         visibilidade: "Média-Alta",
@@ -48,8 +45,7 @@ export default function Location() {
       name: "Rodovia dos Imigrantes - Entrada Santos",
       description:
         "Ponto estratégico de entrada da cidade, atingindo visitantes e turistas.",
-      image:
-        "https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: "../../assets/image/ilha-porchat.jpeg",
       stats: {
         fluxoDiario: "60.000+",
         visibilidade: "Muito Alta",
@@ -74,14 +70,13 @@ export default function Location() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Imagem */}
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
           <motion.div
             variants={fadeIn("right")}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl"
+            className="w-full lg:w-1/2 relative h-96 md:h-[600px] rounded-lg overflow-hidden shadow-xl"
           >
             <img
               src={locations[activeLocation].image}
@@ -112,63 +107,66 @@ export default function Location() {
             </div>
           </motion.div>
 
-          {/* Lista de Localizações */}
           <motion.div
             variants={fadeIn("left")}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+            className="w-full lg:w-1/2"
           >
-            <h3 className="text-2xl font-bold mb-6 text-primary-900">
+            <h3 className="text-2xl font-bold mb-6 text-primary-900 text-center lg:text-left">
               Escolha um Local
             </h3>
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4 max-w-full">
               {locations.map((location, index) => {
                 const isActive = activeLocation === index;
                 return (
                   <motion.div
                     key={location.id}
-                    className={`p-4 rounded-lg cursor-pointer transition-all ${
+                    className={`p-4 rounded-lg cursor-pointer transition-all flex items-center gap-3 ${
                       isActive
                         ? "bg-[#2d69b3] text-white shadow-lg"
                         : "bg-gray-100 hover:bg-gray-200"
                     }`}
                     onClick={() => setActiveLocation(index)}
-                    whileHover={{ x: !isActive ? 5 : 0 }}
+                    whileHover={{
+                      x: !isActive && window.innerWidth >= 1024 ? 5 : 0,
+                    }}
                   >
-                    <div className="flex items-center">
-                      <MapPin
-                        className={`mr-3 ${
-                          isActive ? "text-white" : "text-primary-600"
+                    <MapPin
+                      className={`flex-shrink-0 ${
+                        isActive ? "text-white" : "text-primary-600"
+                      }`}
+                      size={24}
+                    />
+                    <div className="flex-grow min-w-0">
+                      <h4
+                        className={`font-medium truncate ${
+                          isActive ? "text-white" : "text-primary-900"
                         }`}
-                      />
-                      <div className="flex-grow">
-                        <h4
-                          className={`font-medium ${
-                            isActive ? "text-white" : "text-primary-900"
-                          }`}
-                        >
-                          {location.name}
-                        </h4>
-                        <p
-                          className={`text-sm truncate ${
-                            isActive ? "text-white/80" : "text-gray-600"
-                          }`}
-                        >
-                          {location.description.substring(0, 60)}...
-                        </p>
-                      </div>
-                      <ArrowRight
-                        className={isActive ? "text-white" : "text-primary-600"}
-                        size={18}
-                      />
+                        title={location.name}
+                      >
+                        {location.name}
+                      </h4>
+                      <p
+                        className={`text-sm line-clamp-2 ${
+                          isActive ? "text-white/80" : "text-gray-600"
+                        }`}
+                        title={location.description}
+                      >
+                        {location.description}
+                      </p>
                     </div>
+                    <ArrowRight
+                      className={isActive ? "text-white" : "text-primary-600"}
+                      size={20}
+                    />
                   </motion.div>
                 );
               })}
             </div>
-            <div className="mt-8">
-              <a href="#contact" className="btn-primary">
+            <div className="mt-8 text-center lg:text-left">
+              <a href="#contact" className="btn-primary inline-block px-6 py-3">
                 Solicitar Visita Técnica
               </a>
             </div>
