@@ -64,7 +64,7 @@ export default function Location() {
           className="text-center mb-12"
         >
           <h2 className="section-title">Localizações Estratégicas</h2>
-          <p className="section-subtitle mx-auto">
+          <p className="section-subtitle mx-auto max-w-xl">
             Descubra nossos pontos de alta visibilidade em Santos e São Vicente
             para impulsionar sua marca.
           </p>
@@ -76,7 +76,7 @@ export default function Location() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="w-full lg:w-1/2 relative h-96 md:h-[600px] rounded-lg overflow-hidden shadow-xl"
+            className="w-full lg:w-1/2 relative rounded-lg overflow-hidden shadow-xl h-[400px] md:h-[650px] lg:h-[700px]"
           >
             <img
               src={locations[activeLocation].image}
@@ -87,7 +87,7 @@ export default function Location() {
               <h3 className="text-2xl font-bold text-white mb-2">
                 {locations[activeLocation].name}
               </h3>
-              <p className="text-white/90 mb-4">
+              <p className="text-white/90 mb-4 text-sm md:text-base">
                 {locations[activeLocation].description}
               </p>
               <div className="grid grid-cols-2 gap-4">
