@@ -25,6 +25,7 @@ export default function Header() {
     { name: "Sobre", href: "#about" },
     { name: "Serviços", href: "#services" },
     { name: "Localizações", href: "#locations" },
+    { name: "Diferenciais", href: "#values" },
     { name: "Contato", href: "#contact" },
   ];
 
@@ -65,12 +66,13 @@ export default function Header() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`font-medium hover:text-[#2d69b3] transition-colors ${
-                    scrolled ? "text-[#4b5563]" : "text-white"
-                  }`}
                   onClick={scrollToElement}
+                  className={`group relative font-medium hover:text-zinc-400 transition-colors ${
+                    scrolled ? "text-black" : "text-white"
+                  }`}
                 >
                   {link.name}
+                  <span className="absolute left-0 -bottom-0.5 h-[2px] w-0 bg-[#ff3a1a] transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
               <a
