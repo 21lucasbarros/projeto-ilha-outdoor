@@ -54,9 +54,9 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 bg-[#f9fafb]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -72,7 +72,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 px-4">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -84,11 +84,11 @@ export default function Contact() {
                 Envie uma Mensagem
               </h3>
 
-              {isSubmitted ? (
+              {isSubmitted && (
                 <div className="bg-green-100 text-green-700 p-4 rounded-md text-center mb-4">
                   Mensagem enviada com sucesso!
                 </div>
-              ) : null}
+              )}
 
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -188,39 +188,41 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-[#1a1b21] text-white p-8 rounded-lg shadow-md h-full">
-              <h3 className="text-2xl font-bold mb-6">
-                Informações de Contato
-              </h3>
+            <div className="bg-[#1a1b21] text-white p-8 rounded-lg shadow-md h-full flex flex-col justify-between">
+              <div>
+                <h3 className="text-2xl font-bold mb-6">
+                  Informações de Contato
+                </h3>
 
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-[#fff1e6] p-3 rounded-full mr-4">
-                    <Mail size={24} className="text-[#ff3a1a]" />
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
+                      <Mail size={24} className="text-[#ff3a1a]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">Email</h4>
+                      <a
+                        href="mailto:agenciaracomunicacaovisual@gmail.com"
+                        className="text-white/80 hover:text-white transition-colors break-words"
+                      >
+                        agenciaracomunicacaovisual@gmail.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Email</h4>
-                    <a
-                      href="mailto:agenciaracomunicacaovisual@gmail.com"
-                      className="text-white/80 hover:text-white transition-colors"
-                    >
-                      agenciaracomunicacaovisual@gmail.com
-                    </a>
-                  </div>
-                </div>
 
-                <div className="flex items-start">
-                  <div className="bg-[#fff1e6] p-3 rounded-full mr-4">
-                    <Phone size={24} className="text-[#ff3a1a]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Telefone</h4>
-                    <a
-                      href="tel:+5513998061936"
-                      className="text-white/80 hover:text-white transition-colors"
-                    >
-                      (13) 99806-1936
-                    </a>
+                  <div className="flex items-start">
+                    <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
+                      <Phone size={24} className="text-[#ff3a1a]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">Telefone</h4>
+                      <a
+                        href="tel:+5513998061936"
+                        className="text-white/80 hover:text-white transition-colors"
+                      >
+                        (13) 99806-1936
+                      </a>
+                    </div>
                   </div>
                 </div>
 
