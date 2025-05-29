@@ -30,6 +30,11 @@
     background-color: var(--color-white);
     color: var(--color-gray-800);
   }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }
 
 @layer components {
