@@ -197,7 +197,7 @@ export default function Contact() {
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
-                      <Mail size={24} className="text-[#ff3a1a]" />
+                      <Mail size={20} className="text-[#ff3a1a]" />
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Email</h4>
@@ -213,7 +213,7 @@ export default function Contact() {
 
                   <div className="flex items-start">
                     <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
-                      <Phone size={24} className="text-[#ff3a1a]" />
+                      <Phone size={20} className="text-[#ff3a1a]" />
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Telefone</h4>
