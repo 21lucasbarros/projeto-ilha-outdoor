@@ -188,32 +188,31 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-[#1a1b21] text-white p-6 sm:p-8 rounded-lg shadow-md flex flex-col justify-between min-h-[400px] md:min-h-auto">
+            <div className="bg-[#1a1b21] text-white p-8 rounded-lg shadow-md h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-6">
                   Informações de Contato
                 </h3>
 
                 <div className="space-y-6">
-                  {/* Email */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                    <div className="bg-[#fff1e6] p-3 rounded-full flex-shrink-0">
+                  <div className="flex items-start">
+                    <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
                       <Mail size={24} className="text-[#ff3a1a]" />
                     </div>
                     <div>
                       <h4 className="font-bold mb-1">Email</h4>
                       <a
                         href="mailto:agenciaracomunicacaovisual@gmail.com"
-                        className="text-white/80 hover:text-white transition-colors break-words"
+                        className="text-white/80 hover:text-white transition-colors break-words text-sm md:text-base"
+                        style={{ wordBreak: "break-all" }}
                       >
                         agenciaracomunicacaovisual@gmail.com
                       </a>
                     </div>
                   </div>
 
-                  {/* Telefone */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                    <div className="bg-[#fff1e6] p-3 rounded-full flex-shrink-0">
+                  <div className="flex items-start">
+                    <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
                       <Phone size={24} className="text-[#ff3a1a]" />
                     </div>
                     <div>
