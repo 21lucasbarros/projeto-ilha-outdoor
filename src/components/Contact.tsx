@@ -188,7 +188,7 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-[#1a1b21] text-white p-8 rounded-lg shadow-md h-full flex flex-col justify-between">
+            <div className="bg-[#1a1b21] text-white p-5 rounded-lg shadow-md h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-6">
                   Informações de Contato
