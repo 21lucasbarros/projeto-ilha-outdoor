@@ -126,7 +126,7 @@ export default function Footer() {
             </p>
             <button
               onClick={scrollToTop}
-              className="bg-[#2d496d] hover:bg-[#335784] p-2 rounded-full transition-colors flex items-center justify-center"
+              className="bg-[#2d496d] hover:bg-[#335784] p-2 rounded-full transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Voltar ao topo"
             >
               <ArrowUp className="text-white" size={20} />
