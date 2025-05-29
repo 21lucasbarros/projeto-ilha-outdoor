@@ -1,4 +1,5 @@
 import { BadgeCheck, Instagram, Linkedin, ArrowUp, Github } from "lucide-react";
+import { scrollToElement } from "../utils/scrollToElement";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,8 +11,8 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-[#1a1b21] text-white">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="container mx-auto px-4 py-12 max-w-7xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
                 <BadgeCheck className="text-[#ff3a1a] mr-2" size={24} />
@@ -19,7 +20,7 @@ export default function Footer() {
                   R&A <span className="text-[#ff3a1a]">Comunicação Visual</span>
                 </h2>
               </div>
-              <p className="text-white/70 mb-6">
+              <p className="text-white/70 mb-6 leading-relaxed">
                 Fundada em 1999, oferecemos soluções inovadoras em mídia
                 exterior com foco em impacto social e ambiental positivo.
               </p>
@@ -28,8 +29,8 @@ export default function Footer() {
                   href="https://github.com/21lucasbarros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full transition-colors"
-                  aria-label="Facebook"
+                  className="p-2 rounded-full transition-colors hover:bg-white/10"
+                  aria-label="GitHub"
                 >
                   <Github className="text-white" size={20} />
                 </a>
@@ -37,7 +38,7 @@ export default function Footer() {
                   href="https://www.instagram.com/21lucasbarros/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full transition-colors"
+                  className="p-2 rounded-full transition-colors hover:bg-white/10"
                   aria-label="Instagram"
                 >
                   <Instagram className="text-white" size={20} />
@@ -46,7 +47,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/in/lucasbarrossimon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full transition-colors"
+                  className="p-2 rounded-full transition-colors hover:bg-white/10"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="text-white" size={20} />
@@ -68,6 +69,7 @@ export default function Footer() {
                   <li key={section}>
                     <a
                       href={`#${section}`}
+                      onClick={scrollToElement}
                       className="text-white/70 hover:text-white transition-colors"
                     >
                       {section === "home"
@@ -108,7 +110,7 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-bold mb-4">Contato</h3>
               <ul className="space-y-2">
-                <li className="text-white/70">
+                <li className="text-white/70 break-words">
                   Email: agenciaracomunicacaovisual@gmail.com
                 </li>
                 <li className="text-white/70">Telefone: (13) 99806-1936</li>
@@ -117,14 +119,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-white mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/70 text-sm">
+          <div className="border-t border-white/30 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+            <p className="text-white/70 text-sm text-center sm:text-left">
               &copy; {new Date().getFullYear()} R&A Comunicação Visual. Todos os
               direitos reservados.
             </p>
             <button
               onClick={scrollToTop}
-              className="mt-4 md:mt-0 bg-[#2d496d] hover:bg-[#335784] p-2 rounded-full transition-colors"
+              className="bg-[#2d496d] hover:bg-[#335784] p-2 rounded-full transition-colors flex items-center justify-center"
               aria-label="Voltar ao topo"
             >
               <ArrowUp className="text-white" size={20} />

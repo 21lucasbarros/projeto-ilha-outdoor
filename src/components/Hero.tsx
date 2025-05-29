@@ -15,7 +15,7 @@ export default function Hero() {
     <>
       <section
         id="home"
-        className="relative min-h-screen flex items-center overflow-hidden bg-[#1a1b21] text-[#eeeef0]"
+        className="relative min-h-screen flex items-center overflow-hidden bg-[#1a1b21] text-[#eeeef0] px-4 sm:px-6 md:px-8"
       >
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-radial from-[#2f3039]/90 via-[#1a1b21] to-[#1a1b21]"></div>
@@ -24,7 +24,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#5b73ff]/20 blur-3xl"
+          className="absolute top-16 sm:top-20 right-8 sm:right-20 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-[#5b73ff]/20 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -36,7 +36,7 @@ export default function Hero() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-[#ff3a1a]/10 blur-3xl"
+          className="absolute bottom-16 sm:bottom-20 left-8 sm:left-20 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#ff3a1a]/10 blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.1, 0.2, 0.1],
@@ -48,26 +48,28 @@ export default function Hero() {
           }}
         />
 
-        <div className="container mx-auto px-4 z-20 pt-16">
-          <div className="max-w-4xl">
+        <div className="container mx-auto z-20 pt-16 max-w-5xl">
+          <div className="max-w-full sm:max-w-3xl">
             <motion.div
               variants={fadeIn("up", 0.2)}
               initial="hidden"
               animate="show"
-              className="flex items-center gap-2 mb-6"
+              className="flex items-center gap-2 mb-6 flex-wrap"
             >
-              <span className="px-4 py-1 rounded-full bg-[#2f3039] text-[#b6b7be] text-sm font-medium">
+              <span className="px-4 py-1 rounded-full bg-[#2f3039] text-[#b6b7be] text-sm font-medium whitespace-nowrap">
                 Desde 1999
               </span>
               <span className="w-2 h-2 rounded-full bg-[#ff3a1a]"></span>
-              <span className="text-[#b6b7be]">Baixada Santista</span>
+              <span className="text-[#b6b7be] whitespace-nowrap">
+                Baixada Santista
+              </span>
             </motion.div>
 
             <motion.h1
               variants={fadeIn("up", 0.3)}
               initial="hidden"
               animate="show"
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
             >
               <span className="text-white">Sua marca em</span>
               <br />
@@ -79,7 +81,7 @@ export default function Hero() {
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               animate="show"
-              className="text-xl text-[#b6b7be] mb-12 max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-[#b6b7be] mb-12 max-w-full sm:max-w-xl"
             >
               Conectamos mensagens corporativas com impacto social e ambiental
               através de painéis publicitários estrategicamente posicionados.
@@ -89,18 +91,18 @@ export default function Hero() {
               variants={fadeIn("up", 0.5)}
               initial="hidden"
               animate="show"
-              className="flex flex-col sm:flex-row gap-6"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-full"
             >
               <button
                 onClick={scrollToServices}
-                className="btn-primary flex items-center justify-center gap-2"
+                className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Conheça Nossos Serviços
                 <ArrowRight size={20} />
               </button>
               <a
                 href="#contact"
-                className="btn-secondary flex items-center justify-center gap-2"
+                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto text-center"
               >
                 Entre em Contato
               </a>
@@ -109,7 +111,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >

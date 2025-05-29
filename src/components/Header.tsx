@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { scrollToElement } from "../utils/scrollToElement";
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   const navLinks = [
     { name: "Início", href: "#home" },
@@ -38,29 +38,34 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="flex justify-between items-center">
+            {/* Logo + Icon */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center"
+              className="flex items-center cursor-pointer"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                setIsOpen(false);
+              }}
+              aria-label="Ir para o topo"
             >
-              <div className="flex items-center gap-2">
-                <MapPin
-                  size={28}
-                  className={`font-bold text-xl ${
-                    scrolled ? "text-gray-900" : "text-white"
-                  }`}
-                />
-                <span
-                  className={`font-bold text-xl ${
-                    scrolled ? "text-gray-900" : "text-white"
-                  }`}
-                >
-                  R&A Comunicação Visual
-                </span>
-              </div>
+              <MapPin
+                size={28}
+                className={`font-bold text-xl ${
+                  scrolled ? "text-gray-900" : "text-white"
+                }`}
+              />
+              <span
+                className={`font-bold text-xl ml-2 ${
+                  scrolled ? "text-gray-900" : "text-white"
+                }`}
+              >
+                R&A Comunicação Visual
+              </span>
             </motion.div>
 
+            {/* Menu Desktop */}
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <a
@@ -77,17 +82,19 @@ export default function Header() {
               ))}
               <a
                 href="#contact"
-                className="btn-primary"
+                className="btn-primary whitespace-nowrap"
                 onClick={scrollToElement}
               >
                 Fale Conosco
               </a>
             </nav>
 
+            {/* Botão Mobile */}
             <button
-              className="md:hidden p-2 focus:outline-none"
+              className="md:hidden p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ff3a1a]"
               onClick={toggleMenu}
-              aria-label="Toggle menu"
+              aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isOpen}
             >
               {isOpen ? (
                 <X
@@ -103,41 +110,48 @@ export default function Header() {
             </button>
           </div>
 
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden bg-white mt-2 rounded-lg shadow-lg overflow-hidden"
-            >
-              <div className="py-2">
-                {navLinks.map((link) => (
+          {/* Menu Mobile com animação */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.nav
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden bg-white mt-2 rounded-lg shadow-lg overflow-hidden"
+                role="menu"
+                aria-label="Menu de navegação mobile"
+              >
+                <div className="py-2 flex flex-col">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="block px-4 py-3 text-[#4b5563] hover:bg-[#f3f4f6] transition-colors"
+                      onClick={(e) => {
+                        scrollToElement(e);
+                        setIsOpen(false);
+                      }}
+                      role="menuitem"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
                   <a
-                    key={link.name}
-                    href={link.href}
-                    className="block px-4 py-2 text-[#4b5563] hover:bg-[#f3f4f6]"
+                    href="#contact"
+                    className="block px-4 py-3 mt-2 bg-[#1a4b8c] text-white font-medium text-center rounded-md mx-4"
                     onClick={(e) => {
                       scrollToElement(e);
                       setIsOpen(false);
                     }}
+                    role="menuitem"
                   >
-                    {link.name}
+                    Fale Conosco
                   </a>
-                ))}
-                <a
-                  href="#contact"
-                  className="block px-4 py-2 mt-2 bg-[#1a4b8c] text-white font-medium"
-                  onClick={(e) => {
-                    scrollToElement(e);
-                    setIsOpen(false);
-                  }}
-                >
-                  Fale Conosco
-                </a>
-              </div>
-            </motion.div>
-          )}
+                </div>
+              </motion.nav>
+            )}
+          </AnimatePresence>
         </div>
       </header>
     </>

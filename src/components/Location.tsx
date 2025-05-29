@@ -71,20 +71,20 @@ export default function Location() {
   ];
 
   return (
-    <section id="locations" className="py-20 bg-[#ffffff]">
+    <section id="locations" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
           variants={fadeIn("up")}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Locais Estratégicos
           </h2>
-          <div className="w-20 h-1 bg-[#ff3a1a] mx-auto mb-6"></div>
-          <p className="text-lg text-[#4B5563] max-w-3xl mx-auto">
+          <div className="w-16 sm:w-20 h-1 bg-[#ff3a1a] mx-auto mb-5"></div>
+          <p className="text-base sm:text-lg text-[#4B5563] max-w-3xl mx-auto px-2 sm:px-0 leading-relaxed">
             Posicionamos sua marca em pontos de alta visibilidade em Santos e
             São Vicente, garantindo exposição máxima para o público-alvo.
           </p>
@@ -95,47 +95,55 @@ export default function Location() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="space-y-16"
+          className="space-y-12 md:space-y-16"
         >
           {locations.map((location, index) => (
             <motion.div
               key={location.id}
               variants={fadeIn(index % 2 === 0 ? "left" : "right", 0.2)}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-8 items-center`}
+              className={`flex flex-col gap-8 items-center md:items-start ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
             >
-              <div className="w-full lg:w-1/2">
+              <div className="w-full md:w-1/2 max-w-md sm:max-w-lg lg:max-w-none">
                 <div className="relative overflow-hidden rounded-lg shadow-xl">
                   <img
                     src={location.image}
                     alt={location.name}
-                    className="w-full h-72 md:h-96 object-cover rounded-lg hover:scale-105 transition-transform duration-500"
+                    className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover rounded-lg transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-[#ffffff] mb-2">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg"></div>
+                  <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-md">
                       {location.name}
                     </h3>
                   </div>
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div className="w-full md:w-1/2 max-w-md sm:max-w-lg lg:max-w-none">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                   {location.name}
                 </h3>
-                <p className="text-[#4B5563] mb-6">{location.description}</p>
-                <div className="bg-[#F9FAFB] p-6 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-4">Vantagens:</h4>
-                  <ul className="space-y-3">
+                <p className="text-[#4B5563] mb-5 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                  {location.description}
+                </p>
+                <div className="bg-[#F9FAFB] p-5 sm:p-6 rounded-lg shadow-sm">
+                  <h4 className="font-bold text-gray-900 mb-4 text-base sm:text-lg">
+                    Vantagens:
+                  </h4>
+                  <ul className="space-y-2 sm:space-y-3">
                     {location.advantages.map((advantage, i) => (
-                      <li key={i} className="flex items-start">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-[#374151]"
+                      >
                         <Check
-                          className="text-[#ff3a1a] mr-2 mt-1 flex-shrink-0"
-                          size={22}
+                          className="text-[#ff3a1a] mt-1 flex-shrink-0"
+                          size={20}
                         />
-                        <span className="text-[#374151]">{advantage}</span>
+                        <span>{advantage}</span>
                       </li>
                     ))}
                   </ul>
