@@ -10,16 +10,14 @@ import Values from "./components/Values";
 export default function App() {
   return (
     <>
-      <div className="flex flex-col min-h-screen">
+      <div className="font-sans">
         <Header />
-        <main className="flex-grow">
-          <Hero />
-          <About />
-          <Services />
-          <Location />
-          <Values />
-          <Contact />
-        </main>
+        <Hero />
+        <About />
+        <Services />
+        <Location />
+        <Values />
+        <Contact />
         <Footer />
       </div>
     </>
