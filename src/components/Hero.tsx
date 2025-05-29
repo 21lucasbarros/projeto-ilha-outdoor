@@ -1,87 +1,129 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { fadeIn } from "../utils/animation";
+import { ArrowDownCircle, ArrowRight } from "lucide-react";
+import { scrollToElement } from "../utils/scrollToElement";
 
 export default function Hero() {
+  const scrollToServices = () => {
+    const element = document.getElementById("services");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <section
         id="home"
-        className="relative min-h-screen flex items-center bg-[#1a4b8c] bg-opacity-90"
-        style={{
-          backgroundImage: `linear-gradient(to right bottom, rgba(26, 75, 140, 0.9), rgba(45, 105, 179, 0.95)), url('https://images.pexels.com/photos/3951881/pexels-photo-3951881.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="relative min-h-screen flex items-center overflow-hidden bg-[#1a1b21] text-[#eeeef0]"
       >
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl py-20 md:py-24">
-          <div className="max-w-3xl">
-            <motion.h1
-              variants={fadeIn("up")}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-radial from-[#2f3039]/90 via-[#1a1b21] to-[#1a1b21]"></div>
+          <div className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#1a1b21] via-transparent to-[#1a1b21] opacity-80"></div>
+        </div>
+
+        <motion.div
+          className="absolute top-20 right-20 w-64 h-64 rounded-full bg-[#5b73ff]/20 blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-[#ff3a1a]/10 blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        <div className="container mx-auto px-4 z-20 pt-16">
+          <div className="max-w-4xl">
+            <motion.div
+              variants={fadeIn("up", 0.2)}
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6"
+              animate="show"
+              className="flex items-center gap-2 mb-6"
             >
-              Painéis Publicitários em Pontos Estratégicos
+              <span className="px-4 py-1 rounded-full bg-[#2f3039] text-[#b6b7be] text-sm font-medium">
+                Desde 1999
+              </span>
+              <span className="w-2 h-2 rounded-full bg-[#ff3a1a]"></span>
+              <span className="text-[#b6b7be]">Baixada Santista</span>
+            </motion.div>
+
+            <motion.h1
+              variants={fadeIn("up", 0.3)}
+              initial="hidden"
+              animate="show"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8"
+            >
+              <span className="text-white">Sua marca em</span>
+              <br />
+              <span className="text-[#5b73ff]">evidência</span>
+              <span className="text-white"> na cidade</span>
             </motion.h1>
 
             <motion.p
-              variants={fadeIn("up", 0.3)}
+              variants={fadeIn("up", 0.4)}
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-lg md:text-xl text-white/90 mb-8 md:mb-10"
+              animate="show"
+              className="text-xl text-[#b6b7be] mb-12 max-w-2xl"
             >
-              Conectamos sua marca com o público certo através de painéis
-              publicitários posicionados estrategicamente em Santos e São
-              Vicente, garantindo alta visibilidade e impacto.
+              Conectamos mensagens corporativas com impacto social e ambiental
+              através de painéis publicitários estrategicamente posicionados.
             </motion.p>
 
             <motion.div
               variants={fadeIn("up", 0.5)}
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="flex flex-col sm:flex-row gap-4"
+              animate="show"
+              className="flex flex-col sm:flex-row gap-6"
             >
-              <a href="#locations" className="btn-primary">
-                Ver Localizações <ArrowRight size={18} />
-              </a>
-              <a href="#contact" className="btn-secondary">
-                Solicitar Orçamento
+              <button
+                onClick={scrollToServices}
+                className="btn-primary flex items-center justify-center gap-2"
+              >
+                Conheça Nossos Serviços
+                <ArrowRight size={20} />
+              </button>
+              <a
+                href="#contact"
+                className="btn-secondary flex items-center justify-center gap-2"
+              >
+                Entre em Contato
               </a>
             </motion.div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-          <motion.div
-            initial={{ y: 0 }}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
+        >
+          <a
+            href="#about"
+            onClick={scrollToElement}
+            className="flex items-center justify-center"
           >
-            <a
-              href="#about"
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-colors"
-              aria-label="Rolar para baixo"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 5v14M5 12l7 7 7-7" />
-              </svg>
-            </a>
-          </motion.div>
-        </div>
+            <ArrowDownCircle
+              className="text-[#b6b7be] hover:text-white transition-colors cursor-pointer"
+              size={36}
+            />
+          </a>
+        </motion.div>
       </section>
     </>
   );

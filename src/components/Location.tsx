@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, ArrowRight } from "lucide-react";
-import { fadeIn } from "../utils/animation";
+import { fadeIn, staggerContainer } from "../utils/animation";
+import { Check } from "lucide-react";
 
 export default function Location() {
-  const [activeLocation, setActiveLocation] = useState(0);
-
   const locations = [
     {
       id: 1,
@@ -17,202 +14,135 @@ export default function Location() {
         fluxoDiario: "50.000+",
         visibilidade: "Alta",
       },
+      advantages: [
+        "Fluxo diário de 50.000+ pessoas",
+        "Alta visibilidade",
+        "Localização estratégica",
+      ],
     },
     {
       id: 2,
-      name: "Av. Ana Costa - Santos",
+      name: "Teleférico - São Vicente",
       description:
-        "Avenida comercial de grande movimento, conectando a praia ao centro da cidade.",
+        "Localizado próximo ao teleférico, ponto turístico com grande circulação de visitantes e moradores.",
       image: "../../assets/image/teleferico.jpeg",
       stats: {
         fluxoDiario: "45.000+",
         visibilidade: "Alta",
       },
+      advantages: [
+        "Grande circulação turística",
+        "Ponto de referência da cidade",
+        "Excelente visibilidade durante todo o dia",
+      ],
     },
     {
       id: 3,
-      name: "Av. Presidente Wilson - São Vicente",
+      name: "Campo de Pouso - São Vicente",
       description:
-        "Via litorânea com alta circulação de turistas e moradores durante todo o ano.",
+        "Área com vista privilegiada, muito frequentada por moradores e turistas para lazer e esportes.",
       image: "../../assets/image/campo-de-pouso.jpeg",
       stats: {
         fluxoDiario: "40.000+",
         visibilidade: "Média-Alta",
       },
+      advantages: [
+        "Público turista e local",
+        "Movimento constante, especialmente nos finais de semana",
+        "Visibilidade ampla em espaço aberto",
+      ],
     },
     {
       id: 4,
-      name: "Rodovia dos Imigrantes - Entrada Santos",
+      name: "Ilha Porchat - São Vicente",
       description:
-        "Ponto estratégico de entrada da cidade, atingindo visitantes e turistas.",
+        "Local turístico com acesso a mirantes e restaurantes, atraindo um público qualificado e diversificado.",
       image: "../../assets/image/ilha-porchat.jpeg",
       stats: {
         fluxoDiario: "60.000+",
         visibilidade: "Muito Alta",
       },
+      advantages: [
+        "Público de alto poder aquisitivo",
+        "Visibilidade em pontos estratégicos da ilha",
+        "Grande movimento turístico e local",
+      ],
     },
   ];
 
   return (
-    <section id="locations" className="section-padding bg-white">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+    <section id="locations" className="py-20 bg-[#ffffff]">
+      <div className="container mx-auto px-4">
         <motion.div
+          className="text-center mb-16"
           variants={fadeIn("up")}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="text-center mb-12"
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <h2 className="section-title">Localizações Estratégicas</h2>
-          <p className="section-subtitle mx-auto max-w-xl">
-            Descubra nossos pontos de alta visibilidade em Santos e São Vicente
-            para impulsionar sua marca.
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Locais Estratégicos
+          </h2>
+          <div className="w-20 h-1 bg-[#ff3a1a] mx-auto mb-6"></div>
+          <p className="text-lg text-[#4B5563] max-w-3xl mx-auto">
+            Posicionamos sua marca em pontos de alta visibilidade em Santos e
+            São Vicente, garantindo exposição máxima para o público-alvo.
           </p>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-center">
-          <motion.div
-            variants={fadeIn("right")}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="w-full lg:w-1/2 relative rounded-lg overflow-hidden shadow-xl h-[400px] md:h-[650px] lg:h-[700px]"
-          >
-            <img
-              src={locations[activeLocation].image}
-              alt={locations[activeLocation].name}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent flex flex-col justify-end p-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {locations[activeLocation].name}
-              </h3>
-              <p className="text-white/90 mb-4 text-sm md:text-base">
-                {locations[activeLocation].description}
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
-                  <p className="text-xs text-white/80">Fluxo Diário</p>
-                  <p className="text-lg font-bold text-white">
-                    {locations[activeLocation].stats.fluxoDiario}
-                  </p>
-                </div>
-                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
-                  <p className="text-xs text-white/80">Visibilidade</p>
-                  <p className="text-lg font-bold text-white">
-                    {locations[activeLocation].stats.visibilidade}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={fadeIn("left")}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="w-full lg:w-1/2"
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary-900 text-center lg:text-left">
-              Escolha um Local
-            </h3>
-            <div className="flex flex-col gap-4 max-w-full">
-              {locations.map((location, index) => {
-                const isActive = activeLocation === index;
-                return (
-                  <motion.div
-                    key={location.id}
-                    className={`p-4 rounded-lg cursor-pointer transition-all flex items-center gap-3 ${
-                      isActive
-                        ? "bg-[#2d69b3] text-white shadow-lg"
-                        : "bg-gray-100 hover:bg-gray-200"
-                    }`}
-                    onClick={() => setActiveLocation(index)}
-                    whileHover={{
-                      x: !isActive && window.innerWidth >= 1024 ? 5 : 0,
-                    }}
-                  >
-                    <MapPin
-                      className={`flex-shrink-0 ${
-                        isActive ? "text-white" : "text-primary-600"
-                      }`}
-                      size={24}
-                    />
-                    <div className="flex-grow min-w-0">
-                      <h4
-                        className={`font-medium truncate ${
-                          isActive ? "text-white" : "text-primary-900"
-                        }`}
-                        title={location.name}
-                      >
-                        {location.name}
-                      </h4>
-                      <p
-                        className={`text-sm line-clamp-2 ${
-                          isActive ? "text-white/80" : "text-gray-600"
-                        }`}
-                        title={location.description}
-                      >
-                        {location.description}
-                      </p>
-                    </div>
-                    <ArrowRight
-                      className={isActive ? "text-white" : "text-primary-600"}
-                      size={20}
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
-            <div className="mt-8 text-center lg:text-left">
-              <a href="#contact" className="btn-primary inline-block px-6 py-3">
-                Solicitar Visita Técnica
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
         <motion.div
-          variants={fadeIn("up")}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
-          className="mt-16 bg-primary-50 p-8 rounded-lg shadow-lg"
+          viewport={{ once: true, amount: 0.1 }}
+          className="space-y-16"
         >
-          <h3 className="text-2xl font-bold mb-4 text-primary-900 text-center">
-            Por que estas localizações são estratégicas?
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h4 className="text-xl font-bold mb-2 text-primary-800">
-                Alto Fluxo
-              </h4>
-              <p className="text-gray-700">
-                Nossos painéis estão posicionados em vias de alta circulação,
-                garantindo que sua mensagem alcance milhares de pessoas
-                diariamente.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h4 className="text-xl font-bold mb-2 text-primary-800">
-                Visibilidade 24h
-              </h4>
-              <p className="text-gray-700">
-                Painéis iluminados que funcionam dia e noite, ampliando o tempo
-                de exposição da sua marca ao público.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h4 className="text-xl font-bold mb-2 text-primary-800">
-                Pontos Estratégicos
-              </h4>
-              <p className="text-gray-700">
-                Localizações cuidadosamente selecionadas para atingir seu
-                público-alvo de forma eficiente e impactante.
-              </p>
-            </div>
-          </div>
+          {locations.map((location, index) => (
+            <motion.div
+              key={location.id}
+              variants={fadeIn(index % 2 === 0 ? "left" : "right", 0.2)}
+              className={`flex flex-col ${
+                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              } gap-8 items-center`}
+            >
+              <div className="w-full lg:w-1/2">
+                <div className="relative overflow-hidden rounded-lg shadow-xl">
+                  <img
+                    src={location.image}
+                    alt={location.name}
+                    className="w-full h-72 md:h-96 object-cover rounded-lg hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-6">
+                    <h3 className="text-xl md:text-2xl font-bold text-[#ffffff] mb-2">
+                      {location.name}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {location.name}
+                </h3>
+                <p className="text-[#4B5563] mb-6">{location.description}</p>
+                <div className="bg-[#F9FAFB] p-6 rounded-lg">
+                  <h4 className="font-bold text-gray-900 mb-4">Vantagens:</h4>
+                  <ul className="space-y-3">
+                    {location.advantages.map((advantage, i) => (
+                      <li key={i} className="flex items-start">
+                        <Check
+                          className="text-[#ff3a1a] mr-2 mt-1 flex-shrink-0"
+                          size={22}
+                        />
+                        <span className="text-[#374151]">{advantage}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

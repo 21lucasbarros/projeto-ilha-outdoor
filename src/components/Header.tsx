@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { scrollToElement } from "../utils/scrollToElement";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,6 @@ export default function Header() {
         setScrolled(isScrolled);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
@@ -47,15 +47,15 @@ export default function Header() {
                 <MapPin
                   size={28}
                   className={`font-bold text-xl ${
-                    scrolled ? "text-[#1a4b8c]" : "text-white"
+                    scrolled ? "text-gray-900" : "text-white"
                   }`}
                 />
                 <span
                   className={`font-bold text-xl ${
-                    scrolled ? "text-[#1a4b8c]" : "text-white"
+                    scrolled ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  R&A Comunicação
+                  R&A Comunicação Visual
                 </span>
               </div>
             </motion.div>
@@ -68,11 +68,16 @@ export default function Header() {
                   className={`font-medium hover:text-[#2d69b3] transition-colors ${
                     scrolled ? "text-[#4b5563]" : "text-white"
                   }`}
+                  onClick={scrollToElement}
                 >
                   {link.name}
                 </a>
               ))}
-              <a href="#contact" className="btn-primary">
+              <a
+                href="#contact"
+                className="btn-primary"
+                onClick={scrollToElement}
+              >
                 Fale Conosco
               </a>
             </nav>
@@ -110,7 +115,10 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     className="block px-4 py-2 text-[#4b5563] hover:bg-[#f3f4f6]"
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      scrollToElement(e);
+                      setIsOpen(false);
+                    }}
                   >
                     {link.name}
                   </a>
@@ -118,7 +126,10 @@ export default function Header() {
                 <a
                   href="#contact"
                   className="block px-4 py-2 mt-2 bg-[#1a4b8c] text-white font-medium"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    scrollToElement(e);
+                    setIsOpen(false);
+                  }}
                 >
                   Fale Conosco
                 </a>
