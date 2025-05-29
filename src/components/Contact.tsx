@@ -188,7 +188,7 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-[#1a1b21] text-white p-5 rounded-lg shadow-md h-full flex flex-col justify-between">
+            <div className="bg-[#1a1b21] text-white p-5 md:p-8 rounded-lg shadow-md h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl font-bold mb-6">
                   Informações de Contato
@@ -199,12 +199,12 @@ export default function Contact() {
                     <div className="bg-[#fff1e6] p-3 rounded-full mr-4 flex-shrink-0">
                       <Mail size={20} className="text-[#ff3a1a]" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h4 className="font-bold mb-1">Email</h4>
                       <a
                         href="mailto:agenciaracomunicacaovisual@gmail.com"
                         className="text-white/80 hover:text-white transition-colors break-words text-sm md:text-base"
-                        style={{ wordBreak: "break-all" }}
+                        style={{ wordBreak: "break-all", fontSize: "0.95rem" }}
                       >
                         agenciaracomunicacaovisual@gmail.com
                       </a>
