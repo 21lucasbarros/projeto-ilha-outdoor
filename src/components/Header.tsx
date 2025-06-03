@@ -26,7 +26,6 @@ export default function Header() {
     { name: "Serviços", href: "#services" },
     { name: "Localizações", href: "#locations" },
     { name: "Diferenciais", href: "#values" },
-    { name: "Contato", href: "#contact" },
   ];
 
   return (
