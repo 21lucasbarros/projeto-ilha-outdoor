@@ -2,22 +2,9 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/animation";
 import { ArrowDownCircle, ArrowRight } from "lucide-react";
 import { scrollToElement } from "../utils/scrollToElement";
+import Button from "./ui/Button";
 
 export default function Hero() {
-  const scrollToServices = () => {
-    const element = document.getElementById("services");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
       <section
@@ -100,19 +87,22 @@ export default function Hero() {
               animate="show"
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-full"
             >
-              <button
-                onClick={scrollToServices}
+              <Button
+                href="#services"
+                onClick={scrollToElement}
                 className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Conheça Nossos Serviços
                 <ArrowRight size={20} />
-              </button>
-              <button
-                onClick={scrollToContact}
-                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto text-center"
+              </Button>
+
+              <Button
+                href="#contact"
+                onClick={scrollToElement}
+                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Entre em Contato
-              </button>
+              </Button>
             </motion.div>
           </div>
         </div>
