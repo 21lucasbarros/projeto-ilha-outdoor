@@ -11,6 +11,13 @@ export default function Hero() {
     }
   };
 
+  const scrollToContact = () => {
+    const element = document.getElementById("contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <section
@@ -100,12 +107,12 @@ export default function Hero() {
                 Conheça Nossos Serviços
                 <ArrowRight size={20} />
               </button>
-              <a
-                href="#contact"
+              <button
+                onClick={scrollToContact}
                 className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto text-center"
               >
                 Entre em Contato
-              </a>
+              </button>
             </motion.div>
           </div>
         </div>
